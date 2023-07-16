@@ -1,8 +1,9 @@
+import Header from "./Header"
 
 function Home() {
   return (
-    <div className='flex'>
-      <h1>hi dad</h1>
+    <div className="scroll-smooth">
+      <Header />
     </div>
   )
 }
