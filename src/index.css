@@ -17,5 +17,14 @@
 body {
   background-color: var(--body-color);
   font-family: 'Inter', sans-serif;
-  height: 100vh;
+}
+
+@layer components {
+  .genre-box {
+    @apply flex basis-1/12 flex-grow h-32 rounded-md border
+    border-gray-500 justify-center items-center hover:border-cyan-600
+    hover:bg-cyan-600 transition-all ease-linear hover:text-white select-none
+    cursor-pointer
+  }
+
 }

@@ -4,7 +4,7 @@ import ScrollDownArrow from 'components/ScrollDownArrow'
 
 function Header() {
   return (
-    <div className='h-screen'>
+    <div className='h-screen relative'>
       <div className="bg-[url('/src/assets/books.jpg')] h-80 flex justify-center items-center">
         <img src={logoPath} alt="The New York Times Best Sellers" />
       </div>
