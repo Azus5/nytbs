@@ -27,4 +27,20 @@ body {
     cursor-pointer
   }
 
+  .index-page {
+    @apply overflow-y-scroll snap-y snap-mandatory h-screen scroll-smooth
+  }
+
+  .index-page > div {
+    @apply snap-start
+  }
+
+  .btn-yellow {
+    @apply p-4 bg-yellow-400 text-black font-bold text-center block rounded-sm
+  }
+
+  .book-tooltip {
+    @apply absolute top-0 left-48 w-96 text-white bg-gray-900 py-3 px-7 shadow-md
+    rounded-md transition-all ease-linear scale-0 z-10 select-none cursor-auto
+  }
 }
