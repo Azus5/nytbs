@@ -1,7 +1,7 @@
 import Book from "./Book"
 
 type Props = {
-  books: Book[]
+  books: ListItem[]
 }
 
 function BookList({ books }: Props) {

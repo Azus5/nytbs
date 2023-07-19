@@ -2,12 +2,17 @@ import { useState, useEffect } from 'react'
 import { getRandomBookCoverPath } from '@/utils'
 
 type Props = {
-  book: Book,
+  book: ListItem,
   className?: string
 }
 
 function Book({ book, className = '' }: Props) {
   const [bookCoverPath, setbookCoverPath] = useState('')
+  const [bookDetails, setBookDetails] = useState(book.book_details[0])
+
+  useEffect(() => {
+    setBookDetails(book.book_details[0])
+  }, [book])
 
   useEffect(() => {
     setbookCoverPath(getRandomBookCoverPath())
@@ -23,19 +28,21 @@ function Book({ book, className = '' }: Props) {
   }
 
   return (
-    <div className={`max-w-max font-medium ${className}`}>
-      <h4 className="uppercase text-center">{book.rank}. {book.title}</h4>
+    <div className={`w-44 font-medium text-sm ${className}`}>
+      <div className='h-20'>
+        <h4 className="uppercase text-center">{book.rank}. {bookDetails.title}</h4>
+      </div>
       <a href='#' className='w-44 relative cursor-pointer group' tabIndex={0}>
-        <img src={bookCoverPath} alt={`${book.title} - book cover`} className='w-44 h-72' />
+        <img src={bookCoverPath} alt={`${bookDetails.title} - book cover`} className='w-44 h-72' />
         <div className="book-tooltip group-focus:scale-100 hover:scale-100">
-          <h4>{book.title}</h4>
+          <h4>{bookDetails.title}</h4>
           {BookDetailSection('Summary:', 'description')}
           {BookDetailSection('Publisher:', 'publisher')}
           {BookDetailSection('Price:', 'price')}
-          <a href={book.amazon_url} target="_blank" rel="noopener noreferrer" className='btn-yellow mt-3'>Buy Now</a>
+          <a href={book.amazon_product_url} target="_blank" rel="noopener noreferrer" className='btn-yellow mt-3'>Buy Now</a>
         </div>
       </a>
-      <h4 className='text-center'>by {book.author}</h4>
+      <h4 className='text-center'>by {bookDetails.author}</h4>
     </div>
   )
 }

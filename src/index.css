@@ -21,10 +21,14 @@ body {
 
 @layer components {
   .genre-box {
-    @apply flex basis-1/12 flex-grow h-32 rounded-md border
+    @apply flex basis-1/12 flex-grow min-h-max p-2 rounded-md border
     border-gray-500 justify-center items-center hover:border-cyan-600
     hover:bg-cyan-600 transition-all ease-linear hover:text-white select-none
-    cursor-pointer
+    cursor-pointer text-sm text-center
+  }
+
+  .genre-box-selected {
+    @apply border-cyan-600 text-white bg-cyan-600
   }
 
   .index-page {
