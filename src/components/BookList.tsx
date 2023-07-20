@@ -1,15 +1,16 @@
 import Book from "./Book"
 
 type Props = {
-  books: ListItem[]
+  books: ListItem[] | Array<undefined>,
+  isLoading?: boolean
 }
 
-function BookList({ books }: Props) {
+function BookList({ books, isLoading }: Props) {
   return (
-    <div className="flex flex-row flex-no-wrap overflow-x-scroll scrolling-touch items-start">
-      {books.map(book => (
+    <div className="flex flex-row flex-no-wrap overflow-x-scroll overflow-y-hidden scrolling-touch items-start">
+      {books.map((book, i) => (
         <>
-          <Book book={book} className="mr-6 flex-shrink-0" key={book.rank} />
+          <Book book={book} isLoading={isLoading} className="mr-6 flex-shrink-0" key={i} />
         </>
       ))}
     </div>

@@ -1,8 +1,8 @@
-import useSWR from 'swr'
+import useSWRImmutable from 'swr/immutable'
 import { axiosFetcherGET } from '@/services/api'
 
 function useGenres() {
-  const { data, error, isLoading } = useSWR('/lists/names.json', axiosFetcherGET)
+  const { data, error, isLoading } = useSWRImmutable('/lists/names.json', axiosFetcherGET)
 
   return {
     data,

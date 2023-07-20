@@ -1,17 +1,21 @@
 import { useState, useEffect } from 'react'
 import { getRandomBookCoverPath } from '@/utils'
+import BookLoading from './BookLoading'
 
 type Props = {
-  book: ListItem,
-  className?: string
+  book: ListItem | undefined,
+  className?: string,
+  isLoading?: boolean
 }
 
-function Book({ book, className = '' }: Props) {
+function Book({ book, isLoading, className = '' }: Props) {
   const [bookCoverPath, setbookCoverPath] = useState('')
-  const [bookDetails, setBookDetails] = useState(book.book_details[0])
+  const [bookDetails, setBookDetails] = useState<Partial<Book>>({})
 
   useEffect(() => {
-    setBookDetails(book.book_details[0])
+    if (book && book.book_details) {
+      setBookDetails(book.book_details[0])
+    }
   }, [book])
 
   useEffect(() => {
@@ -22,27 +26,40 @@ function Book({ book, className = '' }: Props) {
     return (
       <div className='mt-3'>
         <span>{section}</span>
-        <p className='text-sm'>{book[key as keyof typeof Book]}</p>
+        <p className='text-sm'>{book ? book[key as keyof typeof Book] : ''}</p>
       </div>
     )
   }
 
+  function BookContent() {
+    return (
+      <>
+        <div className='h-20'>
+          <h4 className="uppercase text-center">{book?.rank}. {bookDetails?.title}</h4>
+        </div>
+        <a href='#' className='w-44 relative cursor-pointer group' tabIndex={0}>
+          <img src={bookCoverPath} alt={`${bookDetails?.title} - book cover`} className='w-44 h-72' />
+          <div className="book-tooltip group-focus:scale-100 hover:scale-100">
+            <h4>{bookDetails?.title}</h4>
+            {BookDetailSection('Summary:', 'description')}
+            {BookDetailSection('Publisher:', 'publisher')}
+            {BookDetailSection('Price:', 'price')}
+            <a href={book?.amazon_product_url} target="_blank" rel="noopener noreferrer" className='btn-yellow mt-3'>Buy Now</a>
+          </div>
+        </a>
+        <h4 className='text-center'>by {bookDetails?.author}</h4>
+      </>
+    )
+  }
+
+  function Content() {
+    if (!isLoading) return <BookContent />
+    else return <BookLoading />
+  }
+
   return (
     <div className={`w-44 font-medium text-sm ${className}`}>
-      <div className='h-20'>
-        <h4 className="uppercase text-center">{book.rank}. {bookDetails.title}</h4>
-      </div>
-      <a href='#' className='w-44 relative cursor-pointer group' tabIndex={0}>
-        <img src={bookCoverPath} alt={`${bookDetails.title} - book cover`} className='w-44 h-72' />
-        <div className="book-tooltip group-focus:scale-100 hover:scale-100">
-          <h4>{bookDetails.title}</h4>
-          {BookDetailSection('Summary:', 'description')}
-          {BookDetailSection('Publisher:', 'publisher')}
-          {BookDetailSection('Price:', 'price')}
-          <a href={book.amazon_product_url} target="_blank" rel="noopener noreferrer" className='btn-yellow mt-3'>Buy Now</a>
-        </div>
-      </a>
-      <h4 className='text-center'>by {bookDetails.author}</h4>
+      <Content />
     </div>
   )
 }

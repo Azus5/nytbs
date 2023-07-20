@@ -1,4 +1,4 @@
-import useSWR from 'swr'
+import useSWRImmutable from 'swr/immutable'
 import { axiosFetcherGET } from '@/services/api'
 
 type Params = {
@@ -9,7 +9,7 @@ type Params = {
 }
 
 function useBooks(params: Params) {
-  const { data, error, isLoading, mutate } = useSWR(['/lists.json', params], ([url, params]) => axiosFetcherGET(url, params))
+  const { data, error, isLoading, mutate } = useSWRImmutable(['/lists.json', params], ([url, params]) => axiosFetcherGET(url, params))
 
   return {
     data,
