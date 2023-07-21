@@ -4,18 +4,18 @@ import ScrollDownArrow from 'components/ScrollDownArrow'
 
 function Header() {
   return (
-    <div className='h-screen relative'>
-      <div className="bg-[url('/src/assets/books.jpg')] h-80 flex justify-center items-center">
-        <img src={logoPath} alt="The New York Times Best Sellers" />
+    <div className='xl:h-screen relative'>
+      <div className="bg-[url('/src/assets/books.jpg')] h-32 md:h-60 xl:h-80 bg-cover flex justify-center items-center">
+        <img src={logoPath} alt="The New York Times Best Sellers" className='w-3/4 md:w-1/2' />
       </div>
-      <div className='font-medium flex flex-row'>
-        <div className='w-1/2 text-lg mt-44'>
-          <div className='mx-auto max-w-lg'>
-            <div className='text-justify max-w-sm ml-4'>
+      <div className='font-medium flex flex-col xl:flex-row'>
+        <div className='w-full xl:w-1/2 text-sm md:text-lg mt-20 xl:mt-44'>
+          <div className='w-full px-2 md:px-0 md:mx-auto md:max-w-lg'>
+            <div className='text-justify max-w-sm md:ml-4'>
               <p>Easiest way to browse through the <b>New York Times</b> best sellers lists.</p>
               <p className='mt-5'>Travel through time and see what were the best sellers last week/month/year</p>
             </div>
-            <div className='bg-blue-400 mt-5 max-w-max px-16 p-10 rounded-md mx-auto'>
+            <div className='bg-blue-400 mt-5 md:max-w-max p-10 md:px-16rounded-md mx-auto'>
               <ul className='list-disc'>
                 <li>See what are the best sellers of the week</li>
                 <li className='mt-2'>Find and search by your favorite genres</li>
@@ -25,11 +25,11 @@ function Header() {
             </div>
           </div>
         </div>
-        <div className='w-1/2 text-center mt-32'>
+        <div className='w-full xl:w-1/2 text-center mt-32'>
           <img src={undrawReadingPath} alt="undraw-reading" className='mx-auto' />
         </div>
       </div>
-      <ScrollDownArrow />
+      <ScrollDownArrow hideOnSmallerDevices={true} />
     </div>
   )
 }

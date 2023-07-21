@@ -69,9 +69,9 @@ function Books({ elRef, genre }: Props) {
     }, [genre])
 
     return (
-      <div className="pt-5 px-14 h-screen">
-        <div className="flex flex-row">
-          <div className="items-start mr-32">
+      <div className="pt-5 md:px-14 xl:h-screen">
+        <div className="flex flex-col xl:flex-row">
+          <div className="items-start mb-20 xl:mt-0 xl:mr-32">
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DateCalendar value={listDate} onChange={(date) => setListDate(date)} />
             </LocalizationProvider>
@@ -81,29 +81,32 @@ function Books({ elRef, genre }: Props) {
           </div>
           <ConditionalRenderer show={shouldShowBooks()}>
             <div>
-              <h1 className="font-bold text-lg">These are the Top 3 in <span className="text-orange-400">{genre.display_name}</span></h1>
-              <div className="flex flex-row mt-5">
+              <h1 className="font-bold text-lg ml-4 md:ml-0">These are the Top 3 in <span className="text-orange-400">{genre.display_name}</span></h1>
+              <div className="flex flex-col items-center md:items-start md:flex-row mt-5">
                 {top3Books().map((book, i) => (
-                  <Book book={book} isLoading={isLoading} className="mr-5" key={i} />
+                  <>
+                    <Book book={book} isLoading={isLoading} className="mr-5" key={i} />
+                    <hr className="h-1 my-4 bg-neutral-400 w-3/4 md:hidden"></hr>
+                  </>
                 ))}
               </div>
             </div>
           </ConditionalRenderer>
           <ConditionalRenderer show={!shouldShowBooks()}>
-            <div className="flex flex-row justify-between items-center w-full pr-5">
-              <div className='text-center mr-14'>
-                <h1 className='text-5xl tracking-widest'>No Books</h1>
-                <h4 className='text-xl'>Try change the date filter or pick a another Genre</h4>
+            <div className="flex flex-col md:flex-row justify-between items-center w-full md:pr-5">
+              <div className='text-center mb-10 md:mb-0 md:mr-14'>
+                <h1 className='text-lg md:text-5xl tracking-widest'>No Books</h1>
+                <h4 className='text-sm md:text-xl'>Try change the date filter or pick a another Genre</h4>
               </div>
-              <div className='w-96'>
+              <div className='w-1/2 md:w-96'>
                 <img src={undrawVoid} alt="void" />
               </div>
             </div>
           </ConditionalRenderer>
         </div>
         <ConditionalRenderer show={shouldShowBooks()}>
-          <div className="w-full">
-            <h1 className="font-bold mb-5 text-lg">Sub 3</h1>
+          <div className="w-full px-2 md:px-0">
+            <h1 className="font-bold mb-5 text-lg ml-4 mt-10 md:mt-0 md:ml-0">Sub 3</h1>
             <BookList books={sub3Books()} isLoading={isLoading} />
           </div >
         </ConditionalRenderer>
@@ -120,7 +123,7 @@ function Books({ elRef, genre }: Props) {
   }
 
   return (
-    <div id="books" ref={elRef} className={`flex flex-col justify-between ${(genre.list_name_encoded) ? '' : 'h-screen'}`}>
+    <div id="books" ref={elRef} className={`flex flex-col mt-32 xl:mt-0 justify-between ${(genre.list_name_encoded) ? '' : 'xl:h-screen'}`}>
       <Content />
       <Footer />
     </div>

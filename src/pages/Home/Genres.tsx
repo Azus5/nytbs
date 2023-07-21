@@ -56,14 +56,14 @@ function Genres({ selectedGenre, onSelectGenre, booksRef }: Props) {
   }
 
   return (
-    <div id="genres" className="h-screen relative pt-10">
+    <div id="genres" className="xl:h-screen relative pt-10 mt-20 xl:mt-0">
       <h1 className="text-center text-4xl font-bold mb-10">Genres</h1>
       <div>
-        <div className="flex flex-row flex-wrap gap-3 mx-40">
+        <div className="flex flex-row flex-wrap gap-3 mx-10 xl:mx-40">
           <GenreList />
         </div>
       </div>
-      <ScrollDownArrow />
+      <ScrollDownArrow hideOnSmallerDevices={true} />
     </div>
   )
 }

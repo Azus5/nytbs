@@ -33,7 +33,7 @@ function Book({ book, isLoading, className = '' }: Props) {
 
   function BookContent() {
     return (
-      <div className='relative'>
+      <div className='relative flex-shrink-0'>
         <div className='h-20'>
           <h4 className="uppercase text-center">{book?.rank}. {bookDetails?.title}</h4>
         </div>

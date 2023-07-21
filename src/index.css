@@ -32,7 +32,7 @@ body {
   }
 
   .index-page {
-    @apply overflow-y-scroll snap-y snap-mandatory h-screen scroll-smooth
+    @apply overflow-y-scroll xl:snap-y xl:snap-mandatory h-screen scroll-smooth
   }
 
   .index-page > div {
