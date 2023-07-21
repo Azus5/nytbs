@@ -1,3 +1,7 @@
+# Notes
+- As you'll see, the book covers are static and randomly assigned to a book.
+  - I initially thought about integrating with the amazon api to get the correct cover. That would require more configuration, so in order to keep things simple (for this test), the static covers approach was kept
+
 # Setup
 - install dependencies with `yarn` or `npm i`
 - clone the .env.local example and add your Ny Times api key
