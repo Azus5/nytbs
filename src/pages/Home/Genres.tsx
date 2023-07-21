@@ -15,15 +15,38 @@ function Genres({ selectedGenre, onSelectGenre, booksRef }: Props) {
     booksRef.current?.scrollIntoView({ behavior: 'smooth' })
   }
 
+  function isGenreSelected(genre: Genre) {
+    return selectedGenre.list_name_encoded === genre.list_name_encoded
+  }
+
+  function genreBoxClasses(genre: Genre) {
+    const defaultClasses = ['genre-box']
+    let conditionalClasses = []
+
+    if (isGenreSelected(genre)) conditionalClasses.push('genre-box-selected')
+
+    return [...defaultClasses, ...conditionalClasses].join(' ')
+  }
+
+  function GenreListLoading() {
+    return (
+      <>
+        {Array.from({ length: 55 }).map(() => (
+          <span className={`animate-pulse bg-neutral-300 flex basis-1/12 flex-grow py-5 px-10 rounded-md border border-gray-300`}></span>
+        ))}
+      </>
+    )
+  }
+
   function GenreList() {
-    if (isLoading) return <h1>is Loading</h1>
+    if (isLoading) return <GenreListLoading />
     else {
       const genres = data?.results
 
       return (
         <>
           {genres.map((genre: Genre) => (
-            <span className={`genre-box ${selectedGenre.list_name_encoded === genre.list_name_encoded ? 'genre-box-selected' : ''}`} onClick={() => onClickGenre(genre)} key={genre.list_name_encoded}>
+            <span className={genreBoxClasses(genre)} onClick={() => onClickGenre(genre)} key={genre.list_name_encoded}>
               {genre.display_name}
             </span>
           ))}
