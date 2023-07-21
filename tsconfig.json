@@ -21,7 +21,8 @@
     "noFallthroughCasesInSwitch": true,
 
     "types": [
-      "node"
+      "node",
+      "cypress"
     ],
 
     "baseUrl": ".",
@@ -30,6 +31,6 @@
       "components/*": ["src/components/*"],
     }
   },
-  "include": ["src", "types"],
+  "include": ["src", "types", "cypress"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

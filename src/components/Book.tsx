@@ -33,14 +33,14 @@ function Book({ book, isLoading, className = '' }: Props) {
 
   function BookContent() {
     return (
-      <div className='relative flex-shrink-0'>
+      <div data-cy="book" className='relative flex-shrink-0'>
         <div className='h-20'>
           <h4 className="uppercase text-center">{book?.rank}. {bookDetails?.title}</h4>
         </div>
         <a href='#' className='w-44 relative cursor-pointer peer' tabIndex={0}>
           <img src={bookCoverPath} alt={`${bookDetails?.title} - book cover`} className='w-44 h-72' />
         </a>
-        <div className="book-tooltip peer-focus:scale-100 hover:scale-100">
+        <div data-cy="book-tooltip" className="book-tooltip peer-focus:scale-100 hover:scale-100">
           <h4>{bookDetails?.title}</h4>
           {BookDetailSection('Summary:', 'description')}
           {BookDetailSection('Publisher:', 'publisher')}
