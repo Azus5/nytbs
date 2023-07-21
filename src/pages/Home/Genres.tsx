@@ -31,8 +31,8 @@ function Genres({ selectedGenre, onSelectGenre, booksRef }: Props) {
   function GenreListLoading() {
     return (
       <>
-        {Array.from({ length: 55 }).map(() => (
-          <span className={`animate-pulse bg-neutral-300 flex basis-1/12 flex-grow py-5 px-10 rounded-md border border-gray-300`}></span>
+        {Array.from({ length: 55 }).map((_el, i) => (
+          <span className={`animate-pulse bg-neutral-300 flex basis-1/12 flex-grow py-5 px-10 rounded-md border border-gray-300`} key={i}></span>
         ))}
       </>
     )
@@ -41,7 +41,7 @@ function Genres({ selectedGenre, onSelectGenre, booksRef }: Props) {
   function GenreList() {
     if (isLoading) return <GenreListLoading />
     else {
-      const genres = data?.results
+      const genres = data?.results || []
 
       return (
         <>

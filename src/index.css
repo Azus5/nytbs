@@ -44,7 +44,7 @@ body {
   }
 
   .book-tooltip {
-    @apply absolute top-0 left-48 w-96 text-white bg-gray-900 py-3 px-7 shadow-md
-    rounded-md transition-all ease-linear scale-0 z-10 select-none cursor-auto
+    @apply absolute top-20 left-48 w-96 text-white bg-gray-900 py-3 px-7 shadow-md
+    rounded-md transition-all ease-linear scale-0 z-50 select-none cursor-auto
   }
 }
